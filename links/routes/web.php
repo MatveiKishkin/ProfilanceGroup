@@ -14,14 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
-
-// Auth::routes();
-
-// Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 Route::get('/', [LinksController::class, 'show'])->name('show.link');
 Route::post('/', [LinksController::class, 'generate'])->name('generate.link');
 Route::get('{short_link}', [LinksController::class, 'shortLink'])->name('short.link');

@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use App\Models\Links;
 
 class LinksController extends Controller
 {
+
+    /**
+     * Вывод всех ссылок
+     * 
+     * @return links
+     */
     public function show()
     {
         return view('shortLinks', [
@@ -16,6 +21,13 @@ class LinksController extends Controller
         ]);
     }
 
+    /**
+     * Генерация сокращенной ссылки
+     * 
+     * @param Request $request
+     * 
+     * @return response()->json($link)
+     */
     public function generate(Request $request)
     {
         $request->validate([
@@ -26,12 +38,17 @@ class LinksController extends Controller
             'current_link' => $request->link,
             'short_link' => Str::random(5)
         ]);
-        // $link->save();
 
-        // return redirect()->route('generate.link')->with('success', 'Создана сокращенная ссылка');
         return response()->json($link);
     }
 
+    /**
+     * Редирект сокращенной ссылки на исходную
+     * 
+     * @param $short_link
+     * 
+     * @return redirect($link->current_link)
+     */
     public function shortLink($short_link)
     {
         $link = Links::where('short_link', $short_link)->first();

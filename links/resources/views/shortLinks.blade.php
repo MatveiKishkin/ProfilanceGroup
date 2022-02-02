@@ -66,8 +66,10 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script>
     jQuery(document).ready(function($) {
+
         jQuery('.alert-success').hide();
         jQuery('.alert-danger').hide();
+        
         $("#send").click(function(e) {
             $.ajaxSetup({
                 headers: {
@@ -80,6 +82,7 @@ integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+
                 link: jQuery('#currentLink').val()
             };
 
+            // Ассинхронная функция обработки запроса
             $.ajax({
                 type: 'POST',
                 url: `{{ route('generate.link') }}`,
